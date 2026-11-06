@@ -1,0 +1,98 @@
+/**
+ * Design tokens — the single source of truth for Orbit 2.0's look.
+ *
+ * Everything (colors, spacing, typography, radius, shadows) is defined here
+ * as CSS custom properties so the whole app stays visually consistent and
+ * can be re-themed from one place.
+ *
+ * Light theme is the default. A [data-theme='dark'] block is included as a
+ * forward-looking hook but is NOT activated anywhere yet.
+ */
+
+:root {
+  /* Light theme is the default for native UI (form controls, scrollbars). */
+  color-scheme: light;
+
+  /* ----- Brand & semantic colors ----- */
+  --orbit-primary: #2563eb;
+  --orbit-primary-hover: #1d4ed8;
+  --orbit-primary-subtle: #eff4ff;
+
+  --orbit-success: #16a34a;
+  --orbit-warning: #d97706;
+  --orbit-danger: #dc2626;
+  --orbit-info: #0891b2;
+
+  /* ----- Surfaces & text (light theme) ----- */
+  --orbit-bg: #f4f6fb;        /* app background */
+  --orbit-surface: #ffffff;   /* cards, header, sidebar */
+  --orbit-surface-alt: #f9fafb;
+  --orbit-text: #1f2937;      /* primary text */
+  --orbit-text-muted: #6b7280;
+  --orbit-heading: #111827;
+  --orbit-border: #e5e7eb;
+
+  /* ----- Typography ----- */
+  --orbit-font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica,
+    Arial, sans-serif;
+  --orbit-font-size-base: 0.9375rem; /* 15px — comfortable for dense UIs */
+  --orbit-line-height-base: 1.5;
+
+  /* ----- Spacing scale ----- */
+  --orbit-space-xs: 0.25rem;
+  --orbit-space-sm: 0.5rem;
+  --orbit-space-md: 1rem;
+  --orbit-space-lg: 1.5rem;
+  --orbit-space-xl: 2.5rem;
+
+  /* ----- Radius & shadows ----- */
+  --orbit-radius-sm: 0.375rem;
+  --orbit-radius: 0.5rem;
+  --orbit-radius-lg: 0.75rem;
+  --orbit-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --orbit-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+  --orbit-shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.12);
+
+  /* ----- Layout sizing ----- */
+  --orbit-sidebar-width: 260px;
+  --orbit-sidebar-collapsed-width: 72px;
+  --orbit-header-height: 60px;
+  --orbit-footer-height: 48px;
+
+  /* ----- Transitions ----- */
+  --orbit-transition: 0.2s ease-in-out;
+
+  /* ---------------------------------------------------------------
+     Map Orbit tokens onto Bootstrap's own CSS variables so that
+     native Bootstrap components (buttons, links, etc.) automatically
+     use the Orbit theme without extra classes.
+     --------------------------------------------------------------- */
+  --bs-primary: var(--orbit-primary);
+  --bs-primary-rgb: 37, 99, 235;
+  --bs-body-bg: var(--orbit-bg);
+  --bs-body-color: var(--orbit-text);
+  --bs-body-font-family: var(--orbit-font-sans);
+  --bs-body-font-size: var(--orbit-font-size-base);
+  --bs-border-color: var(--orbit-border);
+  --bs-border-radius: var(--orbit-radius);
+  --bs-link-color: var(--orbit-primary);
+  --bs-link-hover-color: var(--orbit-primary-hover);
+}
+
+/**
+ * Forward-looking dark theme hook. Not enabled by default.
+ * Activate later by setting data-theme="dark" on <html>.
+ */
+[data-theme='dark'] {
+  --orbit-bg: #0f172a;
+  --orbit-surface: #1e293b;
+  --orbit-surface-alt: #243141;
+  --orbit-text: #e2e8f0;
+  --orbit-text-muted: #94a3b8;
+  --orbit-heading: #f8fafc;
+  --orbit-border: #334155;
+
+  --bs-body-bg: var(--orbit-bg);
+  --bs-body-color: var(--orbit-text);
+  --bs-border-color: var(--orbit-border);
+}

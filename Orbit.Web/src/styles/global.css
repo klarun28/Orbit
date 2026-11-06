@@ -1,0 +1,101 @@
+/**
+ * Global base styles and small reusable utility classes.
+ * Bootstrap provides the component library; this file applies the Orbit
+ * design tokens to base elements and adds a few shared helpers.
+ */
+
+/* ----- Baseline reset ----- */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* ----- Base elements ----- */
+body {
+  background-color: var(--orbit-bg);
+  color: var(--orbit-text);
+  font-family: var(--orbit-font-sans);
+  font-size: var(--orbit-font-size-base);
+  line-height: var(--orbit-line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--orbit-heading);
+  font-weight: 600;
+}
+
+a {
+  color: var(--orbit-primary);
+  text-decoration: none;
+  transition: color var(--orbit-transition);
+}
+a:hover {
+  color: var(--orbit-primary-hover);
+}
+
+/* Accessible, consistent focus ring across the app. */
+:focus-visible {
+  outline: 2px solid var(--orbit-primary);
+  outline-offset: 2px;
+}
+
+/* ----- Reusable helpers ----- */
+
+/* Standard enterprise card surface. */
+.orbit-card {
+  background-color: var(--orbit-surface);
+  border: 1px solid var(--orbit-border);
+  border-radius: var(--orbit-radius-lg);
+  box-shadow: var(--orbit-shadow-sm);
+}
+
+/* Subtle secondary text. */
+.orbit-text-muted {
+  color: var(--orbit-text-muted) !important;
+}
+
+/* Section/page title spacing. */
+.orbit-page-title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--orbit-heading);
+  margin: 0;
+}
+
+/* Themed primary button built on Bootstrap's .btn. */
+.btn-orbit-primary {
+  background-color: var(--orbit-primary);
+  border-color: var(--orbit-primary);
+  color: #fff;
+  transition: background-color var(--orbit-transition),
+    border-color var(--orbit-transition);
+}
+.btn-orbit-primary:hover,
+.btn-orbit-primary:focus {
+  background-color: var(--orbit-primary-hover);
+  border-color: var(--orbit-primary-hover);
+  color: #fff;
+}
+
+/* Thin, unobtrusive scrollbars for a cleaner enterprise feel. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--orbit-border) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--orbit-border);
+  border-radius: 8px;
+}

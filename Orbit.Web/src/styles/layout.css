@@ -1,0 +1,217 @@
+/**
+ * Application shell layout: sidebar + header + content + footer.
+ * These class names are the contract the layout components (built in a
+ * later step) will use. Defining them here keeps layout styling centralized.
+ */
+
+/* Root shell: sidebar on the left, content column on the right. */
+.orbit-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ----- Sidebar ----- */
+.orbit-sidebar {
+  width: var(--orbit-sidebar-width);
+  flex-shrink: 0;
+  background-color: var(--orbit-surface);
+  border-right: 1px solid var(--orbit-border);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--orbit-transition);
+}
+
+/* Collapsed (icon-only) rail on desktop. */
+.orbit-sidebar.is-collapsed {
+  width: var(--orbit-sidebar-collapsed-width);
+}
+.orbit-sidebar.is-collapsed .orbit-sidebar__brand {
+  justify-content: center;
+  padding: 0;
+}
+.orbit-sidebar.is-collapsed .orbit-nav-link {
+  justify-content: center;
+  padding: var(--orbit-space-sm);
+}
+
+.orbit-sidebar__brand {
+  height: var(--orbit-header-height);
+  display: flex;
+  align-items: center;
+  gap: var(--orbit-space-sm);
+  padding: 0 var(--orbit-space-md);
+  font-weight: 700;
+  color: var(--orbit-heading);
+  border-bottom: 1px solid var(--orbit-border);
+}
+
+.orbit-sidebar__nav {
+  padding: var(--orbit-space-md) var(--orbit-space-sm);
+  overflow-y: auto;
+}
+
+/* Navigation links inside the sidebar. */
+.orbit-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--orbit-space-sm);
+  padding: var(--orbit-space-sm) var(--orbit-space-md);
+  border-radius: var(--orbit-radius);
+  color: var(--orbit-text);
+  font-weight: 500;
+  transition: background-color var(--orbit-transition),
+    color var(--orbit-transition);
+}
+.orbit-nav-link:hover {
+  background-color: var(--orbit-surface-alt);
+  color: var(--orbit-primary);
+}
+.orbit-nav-link.active {
+  background-color: var(--orbit-primary-subtle);
+  color: var(--orbit-primary);
+}
+
+/* ----- Main column (header + content + footer) ----- */
+.orbit-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* allows content to shrink instead of overflowing */
+}
+
+/* ----- Header ----- */
+.orbit-header {
+  height: var(--orbit-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--orbit-space-md);
+  padding: 0 var(--orbit-space-lg);
+  background-color: var(--orbit-surface);
+  border-bottom: 1px solid var(--orbit-border);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+/* ----- Content ----- */
+.orbit-content {
+  flex: 1;
+  padding: var(--orbit-space-lg);
+}
+
+/* ----- Footer ----- */
+.orbit-footer {
+  min-height: var(--orbit-footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--orbit-space-lg);
+  background-color: var(--orbit-surface);
+  border-top: 1px solid var(--orbit-border);
+  color: var(--orbit-text-muted);
+  font-size: 0.8125rem;
+}
+
+/* ----- Auth layout (centered, no sidebar) ----- */
+.orbit-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--orbit-space-lg);
+  background-color: var(--orbit-bg);
+}
+.orbit-auth__card {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--orbit-surface);
+  border: 1px solid var(--orbit-border);
+  border-radius: var(--orbit-radius-lg);
+  box-shadow: var(--orbit-shadow-lg);
+  padding: var(--orbit-space-xl);
+}
+
+/* Toggle button for showing the sidebar on mobile (hidden on desktop). */
+.orbit-sidebar-toggle {
+  display: none;
+}
+
+/* ----- Split-screen auth layout (branded panel + form) ----- */
+.orbit-auth-split {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Left branding panel (hidden on small screens). */
+.orbit-auth-split__brand {
+  flex: 1 1 50%;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--orbit-space-xl);
+  color: #fff;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0891b2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative globe/grid overlay. */
+.orbit-auth-split__brand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.12) 1px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.orbit-auth-split__brand > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Right form panel. */
+.orbit-auth-split__form {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--orbit-space-xl);
+  background-color: var(--orbit-surface);
+}
+
+.orbit-auth-split__form-inner {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Feature bullet row inside the brand panel. */
+.orbit-auth-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--orbit-space-sm);
+  margin-bottom: var(--orbit-space-md);
+  font-size: 0.95rem;
+}
+.orbit-auth-feature i {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 992px) {
+  .orbit-auth-split__brand {
+    display: flex;
+  }
+}

@@ -1,0 +1,20 @@
+import { useEffect, useState } from 'react'
+
+/**
+ * Returns a debounced copy of a value that only updates after the given
+ * delay has passed without changes. Useful for search inputs to avoid
+ * firing a request on every keystroke.
+ *
+ * @param value The value to debounce.
+ * @param delay Delay in milliseconds (default 300ms).
+ */
+export function useDebounce<T>(value: T, delay = 300): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+
+  return debouncedValue
+}

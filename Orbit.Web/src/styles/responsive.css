@@ -1,0 +1,63 @@
+/**
+ * Responsive behavior for the app shell.
+ * Bootstrap's grid handles content responsiveness; here we handle the
+ * shell-specific behavior (sidebar becomes a slide-in drawer on mobile).
+ */
+
+/* ----- Tablet and below ----- */
+@media (max-width: 991.98px) {
+  .orbit-content {
+    padding: var(--orbit-space-md);
+  }
+}
+
+/* ----- Mobile: sidebar turns into an off-canvas drawer ----- */
+@media (max-width: 767.98px) {
+  /* Show the hamburger toggle in the header. */
+  .orbit-sidebar-toggle {
+    display: inline-flex;
+  }
+
+  /* Slide the sidebar off-screen by default. */
+  .orbit-sidebar,
+  .orbit-sidebar.is-collapsed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    /* Always use full width as a drawer, even if collapsed on desktop. */
+    width: var(--orbit-sidebar-width);
+    z-index: 1040;
+    transform: translateX(-100%);
+    box-shadow: var(--orbit-shadow-lg);
+  }
+
+  /* Restore full labels inside the mobile drawer. */
+  .orbit-sidebar.is-collapsed .orbit-sidebar__brand,
+  .orbit-sidebar.is-collapsed .orbit-nav-link {
+    justify-content: flex-start;
+  }
+
+  /* When opened (toggled via the "is-open" class). */
+  .orbit-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  /* Dimmed backdrop shown behind the open drawer. */
+  .orbit-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1030;
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+}
+
+/* ----- Small phones ----- */
+@media (max-width: 575.98px) {
+  .orbit-header {
+    padding: 0 var(--orbit-space-md);
+  }
+  .orbit-auth__card {
+    padding: var(--orbit-space-lg);
+  }
+}
